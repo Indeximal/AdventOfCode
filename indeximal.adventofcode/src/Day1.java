@@ -7,6 +7,7 @@ import java.util.Scanner;
  * Created by Indeximal on 03.12.15.
  */
 public class Day1 {
+    // Part 1 and 2
     public static void main(String[] args){
         String inputFileName = "/Volumes/Terra Disk/Cyrill/Programmierung/Git Hub/Advent of Code/input1.txt";
         File inputFile = new File(inputFileName);
