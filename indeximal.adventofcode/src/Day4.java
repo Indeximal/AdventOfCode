@@ -1,3 +1,5 @@
+import javax.xml.bind.DatatypeConverter;
+import java.lang.reflect.Array;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -10,25 +12,37 @@ public class Day4 {
         //String code = "abcdef";
         MessageDigest md = MessageDigest.getInstance("MD5");
         int count = 0;
-        boolean found5 = false;
+        int[] numsOfLeadingZerosToFind = {5, 6};
+        String[] hashesFound = new String[numsOfLeadingZerosToFind.length];
 
-        while (true){
+        tryLoop: while (true){
             String input = "" + code + count;
             md.update(input.getBytes());
             byte[] out = md.digest();
-            if (out[0] == 0 && out[1] == 0 && out[2] < 16 && out[2] >= 0){
-                if (!found5){
-                    System.out.printf("Found hash with at least 5 leading zeros: '%s'\n", input);
+            String hash = DatatypeConverter.printHexBinary(out);
+            int foundHashed = 0;
+            for (int i = 0; i < numsOfLeadingZerosToFind.length; i++) {
+                if (hashesFound[i] != null){
+                    foundHashed++;
+                    if (foundHashed >= numsOfLeadingZerosToFind.length){
+                        break tryLoop;
+                    }
+                    continue;
                 }
-                found5 = true;
-                if (out[2] == 0){
-                    System.out.printf("Found hash with at least 6 leading zeros: '%s'\n", input);
-                    break;
+                StringBuilder sb = new StringBuilder();
+                for (int j = 0; j < numsOfLeadingZerosToFind[i]; j++) {
+                    sb.append('0');
+                }
+                if (hash.startsWith(sb.toString())){
+                    hashesFound[i] = input;
                 }
             }
+
             md.reset();
             count++;
-
+        }
+        for (int i = 0; i < numsOfLeadingZerosToFind.length; i++) {
+            System.out.printf("The lowest hash with %d leading zeros is %s('%s')\n", numsOfLeadingZerosToFind[i], md.getAlgorithm(), hashesFound[i]);
         }
     }
 }

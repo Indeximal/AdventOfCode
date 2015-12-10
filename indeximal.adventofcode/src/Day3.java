@@ -12,26 +12,27 @@ public class Day3 {
         String inputFileName = "/Volumes/Terra Disk/Cyrill/Programmierung/Git Hub/Advent of Code/input3.txt";
         File inputFile = new File(inputFileName);
         ArrayList<int[]> housesVisited = new ArrayList<>();
+
         int posX = 0;
         int posY = 0;
-        int[] posZero = {posX, posY};
+
+        int[] posZero = {0, 0};
         housesVisited.add(posZero);
 
         int roboPosX = 0;
         int roboPosY = 0;
 
-        int chars = 0;
+        int chars = 2;
+        boolean onlyOne = false;
+
         try {
             Scanner scanner = new Scanner(inputFile);
-            StringBuilder sb = new StringBuilder();
-            while (scanner.hasNext()) {
-                sb.append(scanner.next());
-            }
-            String input = sb.toString();
+            String input = scanner.next();
             char[] directions = input.toCharArray();
+
             for (int i = 0; i < directions.length; i++) {
-                int[] pos = new int[2];
-                if (i % 2 == 0){
+                int[] updatePos = new int[2];
+                if (i % 2 == 1 || onlyOne){
                     if(directions[i] == '^'){
                         posY++;
                     } else if (directions[i] == 'v'){
@@ -41,8 +42,8 @@ public class Day3 {
                     } else if (directions[i] == '>'){
                         posX++;
                     }
-                    pos[0] = posX;
-                    pos[1] = posY;
+                    updatePos[0] = posX;
+                    updatePos[1] = posY;
                 } else {
                     if(directions[i] == '^'){
                         roboPosX++;
@@ -53,18 +54,19 @@ public class Day3 {
                     } else if (directions[i] == '>'){
                         roboPosX++;
                     }
-                    pos[0] = roboPosX;
-                    pos[1] = roboPosY;
+                    updatePos[0] = roboPosX;
+                    updatePos[1] = roboPosY;
                 }
+
                 boolean existed = false;
                 for (int j = 0; j < housesVisited.size(); j++) {
-                    if (housesVisited.get(j)[0] == pos[0] && housesVisited.get(j)[1] == pos[1]){
+                    if ((housesVisited.get(j)[0] == updatePos[0]) && (housesVisited.get(j)[1] == updatePos[1])){
                         existed = true;
                         break;
                     }
                 }
                 if (!existed){
-                    housesVisited.add(pos);
+                    housesVisited.add(updatePos);
                 }
                 chars++;
 
