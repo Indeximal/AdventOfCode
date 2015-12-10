@@ -59,5 +59,4 @@ public class Day5 {
         System.out.printf("%d words pretend to be nice in total %d words\n", nice, wordsChecked);
         System.out.printf("But only %d words are really nice\n", newNice);
     }
-
 }

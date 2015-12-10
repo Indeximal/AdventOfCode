@@ -9,7 +9,6 @@ import java.security.NoSuchAlgorithmException;
 public class Day4 {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         String code = "ckczppom";
-        //String code = "abcdef";
         MessageDigest md = MessageDigest.getInstance("MD5");
         int count = 0;
         int[] numsOfLeadingZerosToFind = {5, 6};

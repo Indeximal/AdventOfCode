@@ -32,8 +32,8 @@ public class Day2 {
 
                 lines++;
             }
-            System.out.println(sqftNeeded+" sqft of paper and " + ftNeeded +" ft of ribbon needed for "+lines+" packets");
 
+            System.out.println(sqftNeeded+" sqft of paper and " + ftNeeded +" ft of ribbon needed for "+lines+" packets");
         } catch (Exception e) {
             e.printStackTrace();
         }

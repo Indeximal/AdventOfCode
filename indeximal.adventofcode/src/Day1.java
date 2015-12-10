@@ -39,6 +39,5 @@ public class Day1 {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }
