@@ -13,14 +13,13 @@ public class Day6 {
 
         int instructionsFollowed = 0;
         boolean[][] grid = new boolean[1000][1000];
+        int[][] intGrid = new int[1000][1000];
 
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 grid[i][j] = false;
             }
         }
-        int[][] intGrid = new int[1000][1000];
-
         for (int i = 0; i < intGrid.length; i++) {
             for (int j = 0; j < intGrid[i].length; j++) {
                 intGrid[i][j] = 0;
